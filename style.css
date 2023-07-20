@@ -60,7 +60,7 @@ body{
     border-radius: var(--border-radius);
     box-shadow: 0 0 0.1em 0.25em hsl(var(--c-h), 20%, 25%), 0 0 0 var(--border-width) hsl(var(--c-h), 30%, 85%);
     box-sizing: border-box;
-    opacity: 1;
+    opacity: 0;
     transform: scale3d(1.1, 1.1, 1);
     -webkit-animation: appear 1s var(--ease-out) forwards;
     animation: appear 1s var(--ease-out) forwards;
@@ -148,4 +148,40 @@ body{
 .bg {
     position: absolute;
     inset: 0;
+    background: black;
+    border-radius: calc(var(--border-radius) - var(--pad));
+    overflow: hidden;
+}
+
+.bg>*{
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transition: opacity 1s var(--ease-out) 0.5s;
+}
+
+.bg .section{
+    --g-h: var(--c-h);
+    --g-s: var(--c-s);
+    --g-l: var(--c-l);
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    border-radius: calc(var(--border-radius) - var(--pad));
+    border-bottom-left-radius: 20em;
+    border-bottom-right-radius: 20em;
+}
+
+.bg .section:before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(85% 125% at 50% 140%, black 66.6%, transparent), radial-gradient(120% 120% at 50% 145%, hsl(calc(var(--g-h) - 45), 100%, 50) transparent), radial-gradient(150% 100% at 50% 80%, transparent 35%, hsl(calc(var(--g-h) + 50), 100%, 99%));
+    background-color: hsl(var(--g-h), var(--g-s), var(--g-l));
+    transform: scale3d(1.1, 1.25, 1);
+    transform-origin: bottom;
+    transition: transform 1s var(--ease-out) 0.5s;
 }
